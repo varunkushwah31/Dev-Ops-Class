@@ -22,7 +22,7 @@ jobs:
           sudo apt-get update
           sudo apt install tree
       - name: Display home directory structure
-        run: tree -L 2 "$Home"
+        run: tree -L 2 "$HOME"
 
   tool-check:
     runs-on: ubuntu-latest
