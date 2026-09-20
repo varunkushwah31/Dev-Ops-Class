@@ -20,7 +20,7 @@ jobs:
       - name: install Tree
         run: |
           sudo apt-get update
-          sudo apt-get tree
+          sudo apt install tree
       - name: Display home directory structure
         run: tree -L 2 "$Home"
 
