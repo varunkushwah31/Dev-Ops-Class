@@ -1,0 +1,31 @@
+name: Subfolder Builder
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Print working directory
+        run: echo "Current working directory is:$(pwd)"
+
+      - name: List files in the working directory
+        run: ls -la
+
+      - name: finish build
+        run: echo "Subfolder Builder workflow completed successfully"
