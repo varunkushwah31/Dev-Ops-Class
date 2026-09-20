@@ -1,0 +1,22 @@
+name : Trigger Detective
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    detect:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print Triggering Event
+              run: 'echo "Triggered by event: ${{ github.event_name }}"'
+            - name: Print push branch
+              if: github.event_name == 'push'
+              run: 'echo "Push branch is ${{ github.ref }}"'
+            - name: Print PR source and target branches
+              run: |
+                echo "Source branch is ${{ github.event.pull_request.head.ref }}"
+                echo "Target branch is ${{ github.event.pull_request.base.ref }}"
+            - name : Finish Detective work
+              run: echo "Trigger Detective workflow completed successfully"
+
