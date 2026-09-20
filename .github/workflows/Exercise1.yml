@@ -1,0 +1,56 @@
+name: Exercise-1
+
+on:
+  push:
+
+jobs:
+  system-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print OS name and kernel version
+        run: |
+          echo "OS Name:"
+          uname -s
+          echo "Kernel Version:"
+          uname -r
+      - name: Print free disk space
+        run: df -h
+      - name: print Current date and time
+        run: date
+      - name: install Tree
+        run: |
+          sudo apt-get update
+          sudo apt-get tree
+      - name: Display home directory structure
+        run: tree -L 2 "$Home"
+
+  tool-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      - name: Create report.json
+        run: |
+          cat > report.json << 'EOF'
+          {
+            "project" : "System Report",
+            "status" : "success"
+            "version" : 1
+          }
+          EOF
+      - name: Read a value from report.json
+        run: jq '.project' report.json
+
+      - name: Print Python version
+        run: python3 --version
+
+      - name: Print Git version
+        run: git --version
+
+      - name: Print jq version
+        run: jq --version
+
+      - name: Finish report
+        run: echo "Report complete"
