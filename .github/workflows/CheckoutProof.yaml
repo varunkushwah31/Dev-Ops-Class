@@ -1,0 +1,26 @@
+name : Checkout Proof
+on:
+    push:
+    workflow_dispatch:
+jobs:
+    prove:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Inspect before checkout
+              run: |
+                echo "Current directory is: $(pwd)"
+                echo "Files in the repository:"
+                ls -la
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Inspect after checkout
+              run: |
+                echo "Current directory is: $(pwd)"
+                echo "Files in the repository after checkout:"
+                ls -la
+            - name: Count files in the repository
+              run: |
+                file_count=$(ls -1 | wc -l)
+                echo "Number of files in the repository: $file_count"
+            - name: Finish proof
+              run: echo "Checkout Proof workflow completed successfully"
