@@ -7,7 +7,7 @@ jobs:
   system-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Print OS name and kernel version
+      - name: Print OS name  and kernel version
         run: |
           echo "OS Name:"
           uname -s
